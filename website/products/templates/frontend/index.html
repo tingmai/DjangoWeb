@@ -1,0 +1,40 @@
+
+{% extends 'frontend/master.html' %}
+{% block title %}Shopping Cart Sample List{% endblock title %}
+
+{% block content %}
+<hr>
+<div class="container-fluid">
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li{% if messages.tags %} class="{{ messages.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+ <div class="row col-sm-12">
+  {% for p in products %}
+  <div class="col-sm-3 pr-5" style="text-align:center;border-radius:10px;display:block;clear:both;">
+   <div class="card" style="padding:20px;margin-bottom:20px;">
+    <div class="card-block">
+     <div class="card-title">
+      <img src="../../static/images/{{p.photo}}" width="100" height="80" style="border-radius:10px;">
+     </div>
+     <p class="card-text">
+      <i class="fa fa-box">Name: {{p.name}}</i>
+     </p>
+     <p class="card-text">
+      <span class="glyphicon glyphicon-usd"></span>
+      <i>Price: {{p.price}}</i>
+     </p>
+     <a href="../../frontend/add-to-cart/{{p.id}}" class="btn btn-primary">
+      <i class="fa fa-shopping-cart"></i>Add to Cart
+     </a>
+    </div>
+   </div>
+  </div>
+  {% endfor %}
+ </div>
+</div>
+
+{% endblock content %}
